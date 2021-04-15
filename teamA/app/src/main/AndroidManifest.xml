@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.teama">
+
+    
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TeamA">
+        <activity android:name=".Admin.AdminUserReviewActivity"></activity>
+        <activity android:name=".Admin.AdminUserDetailActivity" />
+        <activity android:name=".Admin.AdminUserMemberActivity" />
+        <activity android:name=".Admin.AdminEntDetailActivity" />
+        <activity android:name=".Admin.AdminEntMemberActivity" />
+        <activity android:name=".Admin.AdminMainActivity" />
+        <activity android:name=".user.UserMyListActivity" />
+        <activity android:name=".user.UserMyPageActivity" />
+        <activity android:name=".user.UserReviewAdjustActivity" />
+        <activity android:name=".user.UserReviewInsertActivity" />
+        <activity android:name=".user.UserReviewActivity" />
+        <activity android:name=".user.ShopDetailActivity" />
+        <activity android:name=".user.ShopListActivity" />
+        <activity android:name=".user.UserMainActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
