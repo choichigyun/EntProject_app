@@ -5,8 +5,8 @@ import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
-import com.example.project.entListDTO;
-import com.example.project.entListDetail;
+import com.example.teama.DTO.EntListDTO;
+import com.example.teama.user.ShopDetailActivity;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -22,17 +22,17 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static com.example.project.Common.CommonMethod.ipConfig;
+import static com.example.teama.Common.CommonMethod.ipConfig;
 
 public class entMenuSelect extends AsyncTask<Void, Void, Void> {
     private static final String TAG = "main:entMenuSelect";
     String ent_id;
-    ArrayList<entListDTO> menuList;
-    entListDetail entListDetail;
+    ArrayList<EntListDTO> menuList;
+    ShopDetailActivity shopDetailActivity;
 
 
 
-    public entMenuSelect(String ent_id, ArrayList<entListDTO> menuList) {
+    public entMenuSelect(String ent_id, ArrayList<EntListDTO> menuList) {
         this.ent_id = ent_id;
         this.menuList = menuList;
     }
@@ -111,7 +111,7 @@ public class entMenuSelect extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    public entListDTO readMessage(JsonReader reader) throws IOException {
+    public EntListDTO readMessage(JsonReader reader) throws IOException {
 
         String ent_id = "", ent_menu = "", ent_menu_picture = "";
 
@@ -129,7 +129,7 @@ public class entMenuSelect extends AsyncTask<Void, Void, Void> {
             }
         }
         reader.endObject();
-        entListDTO dto = new entListDTO();
+        EntListDTO dto = new EntListDTO();
         dto.setEnt_id(ent_id);
         dto.setEnt_menu(ent_menu);
         dto.setEnt_menu_picture((ent_menu_picture));

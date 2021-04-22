@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:id="@+id/parentLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+
+    <ImageView
+        android:id="@+id/ent_image"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="129dp"
+        android:layout_weight="1"
+        >
+
+
+        <TextView
+            android:id="@+id/ent_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="62dp"
+            android:layout_marginLeft="62dp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:text="가게이름" />
+
+        <TextView
+            android:id="@+id/ent_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_weight="1"
+            android:text="거리" />
+
+        <TextView
+            android:id="@+id/ent_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="66dp"
+            android:layout_marginLeft="66dp"
+            android:layout_marginBottom="52dp"
+            android:text="가게위치" />
+
+        <TextView
+            android:id="@+id/ent_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginLeft="64dp"
+            android:layout_marginBottom="25dp"
+            android:text="영업시간" />
+
+        <ImageView
+            android:id="@+id/myListImage1"
+            android:layout_width="38dp"
+            android:layout_height="33dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_marginBottom="0dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+    </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

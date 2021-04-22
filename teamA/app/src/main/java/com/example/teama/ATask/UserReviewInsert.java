@@ -2,6 +2,7 @@ package com.example.teama.ATask;
 
 import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -15,10 +16,10 @@ import org.apache.http.entity.mime.content.FileBody;
 import java.io.File;
 import java.nio.charset.Charset;
 
-import static com.example.project.Common.CommonMethod.ipConfig;
+import static com.example.teama.Common.CommonMethod.ipConfig;
 
 public class UserReviewInsert extends AsyncTask<Void, Void, String> {
-
+    private static final String TAG = "main:UserReviewInsert";
     String user_reviewTitle, user_review, imageDbPathA,imageRealPathA;
 
     public UserReviewInsert(String user_reviewTitle, String user_review, String imageDbPathA, String imageRealPathAw) {
@@ -41,14 +42,17 @@ public class UserReviewInsert extends AsyncTask<Void, Void, String> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-
+            String users_nick = "aaa";
+            String ent_id = "bbb";
             // 문자열 및 데이터 추가
-
             builder.addTextBody("user_review", user_review, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("users_nick", users_nick, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("ent_id", ent_id, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("user_reviewTitle", user_reviewTitle, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
-            //진짜 파일경로
-            builder.addPart("image", new FileBody(new File(imageRealPathA)));
+            if(imageDbPathA != null)
+                builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
+            if(imageRealPathA != null)
+                builder.addPart("image", new FileBody(new File(imageRealPathA)));
 
             String postURL = ipConfig + "/ent/userReviewInsert";
             // 전송

@@ -8,8 +8,9 @@ import android.os.AsyncTask;
 import android.util.JsonReader;
 import android.util.Log;
 
-import com.example.project.entListAdapter;
-import com.example.project.entListDTO;
+
+import com.example.teama.Adapter.EntListAdapter;
+import com.example.teama.DTO.EntListDTO;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -23,18 +24,18 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static com.example.project.Common.CommonMethod.ipConfig;
+import static com.example.teama.Common.CommonMethod.ipConfig;
 
 // doInBackground 파라미터 타입, onProgressUpdate파라미터 타입, onPostExecute 파라미터 타입 순서
 // AsyncTask <Params, Progress, Result> 순서임
 public class entSelect extends AsyncTask<Void, Void, Void> {
     private static final String TAG = "main:entSelect";
     // 생성자
-    ArrayList<entListDTO> myItemArrayList;
-    entListAdapter adapter;
+    ArrayList<EntListDTO> myItemArrayList;
+    EntListAdapter adapter;
     ProgressDialog progressDialog;
 
-    public entSelect(ArrayList<entListDTO> myItemArrayList, entListAdapter adapter, ProgressDialog progressDialog) {
+    public entSelect(ArrayList<EntListDTO> myItemArrayList, EntListAdapter adapter, ProgressDialog progressDialog) {
         this.myItemArrayList = myItemArrayList;
         this.adapter = adapter;
         this.progressDialog = progressDialog;
@@ -132,7 +133,7 @@ public class entSelect extends AsyncTask<Void, Void, Void> {
         }
     }
 
-    public entListDTO readMessage(JsonReader reader) throws IOException {
+    public EntListDTO readMessage(JsonReader reader) throws IOException {
         String ent_id="", ent_name = "", ent_location = "", ent_open = "", ent_close = "", ent_proof = "", ent_nick="";
 
         reader.beginObject();
@@ -159,7 +160,7 @@ public class entSelect extends AsyncTask<Void, Void, Void> {
         reader.endObject();
         Log.d("listselect:myitem", ent_name + "," + ent_location + "," + ent_open + "," + ent_close);
         //return new entListDTO(ent_name, ent_open, ent_close, ent_location);
-        entListDTO dto = new entListDTO(ent_name, ent_open, ent_close, ent_location, ent_proof);
+        EntListDTO dto = new EntListDTO(ent_name, ent_open, ent_close, ent_location, ent_proof);
         dto.setEnt_id(ent_id);
         dto.setEnt_nick(ent_nick);
         return dto;
