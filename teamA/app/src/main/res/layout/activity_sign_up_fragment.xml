@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--q-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/user"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            tools:srcCompat="@tools:sample/avatars" />
+
+
+        <ImageButton
+            android:id="@+id/ent"
+            android:layout_width="184dp"
+            android:layout_height="50dp"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:id="@+id/page_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
