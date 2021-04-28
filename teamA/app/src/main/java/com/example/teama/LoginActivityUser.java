@@ -9,14 +9,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class SignUpEnt extends Fragment {
-
-
+public class LoginActivityUser extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_sign_up_ent, container, false);
-
+        ViewGroup view = (ViewGroup) inflater.inflate(R.layout.activity_login_user,container,false);
         return view;
     }
+
 }
