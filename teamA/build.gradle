@@ -12,13 +12,14 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        google()
-        jcenter()
-    }
+repositories {
+    google()
+    jcenter()
 }
 
+
 task clean(type: Delete) {
-    delete rootProject.buildDir
+    allprojects {
+        delete rootProject.buildDir
+    }
 }
