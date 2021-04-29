@@ -1,9 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawer_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.UserMainActivity">
+    android:layout_gravity="start"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Widget.AppCompat.Toolbar"/>
+        <FrameLayout
+            android:id="@+id/framebtn"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="65dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginRight="38dp">
+
+            <ImageButton
+                android:id="@+id/imageButton1"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="65dp"
+                android:text="분식류" />
+
+            <ImageButton
+                android:id="@+id/imageButton2"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="135dp"
+                android:text="국물류" />
+            <ImageButton
+                android:id="@+id/imageButton3"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="205dp"
+                android:text="음료류" />
+            <ImageButton
+                android:id="@+id/imageButton4"
+                android:layout_width="58dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="275dp"
+                android:text="더보기" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="493dp"
+            android:layout_below="@+id/framebtn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="120dp">
+
+            <fragment
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"/>
+
+        </FrameLayout>
+
+        <ImageButton
+            android:id="@+id/imageButton5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:layout_marginBottom="13dp"
+            app:srcCompat="@drawable/go" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_draw_menu"/>
+
+</androidx.drawerlayout.widget.DrawerLayout>

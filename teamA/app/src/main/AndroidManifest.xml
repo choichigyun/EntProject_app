@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.teama">
 
+<<<<<<< Updated upstream
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -37,6 +38,16 @@
             <action android:name="android.media.browse.MediaBrowserService" />
         </intent>
     </queries>
+=======
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
+
+>>>>>>> Stashed changes
 
     <application
         android:allowBackup="true"
@@ -45,6 +56,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeamA">
+
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyDX5ZInNPI2acRkjhvlSApMI50BvN6zPSM"/>
+
         <activity android:name=".Admin.AdminUserReviewActivity"></activity>
         <activity android:name=".Admin.AdminUserDetailActivity" />
         <activity android:name=".Admin.AdminUserMemberActivity" />
@@ -60,7 +76,16 @@
         <activity android:name=".user.ShopListActivity" />
         <activity android:name=".user.UserMainActivity" />
         <activity android:name=".SignUpActivity" />
+<<<<<<< Updated upstream
         <activity android:name=".LoginFragment" />
+=======
+        <activity android:name=".LoginActivity" />
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+>>>>>>> Stashed changes
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

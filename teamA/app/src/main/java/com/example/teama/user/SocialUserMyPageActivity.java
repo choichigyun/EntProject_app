@@ -13,16 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.teama.R;
 
-public class UserMyPageActivity extends AppCompatActivity {
+public class SocialUserMyPageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_my_page);
 
-        EditText userId = findViewById(R.id.user_Id);
-        EditText userPw = findViewById(R.id.user_Pw);
-        EditText userPwCheck = findViewById(R.id.user_PwCheck);
+
         EditText userName = findViewById(R.id.user_Name);
         EditText userNick = findViewById(R.id.user_Nick);
         EditText userPhone = findViewById(R.id.user_Tel);
@@ -36,14 +34,14 @@ public class UserMyPageActivity extends AppCompatActivity {
         btnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(UserMyPageActivity.this);
+                AlertDialog.Builder ad = new AlertDialog.Builder(SocialUserMyPageActivity.this);
                 ad.setIcon(R.mipmap.ic_launcher);
                 ad.setMessage("수정하시겠습니까?");
 
                 ad.setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(UserMyPageActivity.this, "취소되었습니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SocialUserMyPageActivity.this, "취소되었습니다", Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 });
@@ -52,7 +50,7 @@ public class UserMyPageActivity extends AppCompatActivity {
                 ad.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(UserMyPageActivity.this, "수정이 완료되었습니다", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SocialUserMyPageActivity.this, "수정이 완료되었습니다", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(),UserMainActivity.class);
                         startActivity(intent);
 
@@ -69,7 +67,7 @@ public class UserMyPageActivity extends AppCompatActivity {
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder ad = new AlertDialog.Builder(UserMyPageActivity.this);
+                AlertDialog.Builder ad = new AlertDialog.Builder(SocialUserMyPageActivity.this);
                 ad.setIcon(R.mipmap.ic_launcher);
                 ad.setMessage("취소하시겠습니까?");
 
@@ -85,7 +83,7 @@ public class UserMyPageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
 
-                        Toast.makeText(UserMyPageActivity.this, "취소되었습니다. 메인페이지로 이동합니다", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SocialUserMyPageActivity.this, "취소되었습니다. 메인페이지로 이동합니다", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getApplicationContext(),UserMainActivity.class);
                         startActivity(intent);
 
