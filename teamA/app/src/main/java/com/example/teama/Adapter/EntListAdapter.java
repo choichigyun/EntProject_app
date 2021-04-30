@@ -72,6 +72,8 @@ public class EntListAdapter extends RecyclerView.Adapter<EntListAdapter.ItemView
         });
     }
 
+
+
     @Override
     public int getItemCount() {
         return arrayList.size();
@@ -122,11 +124,10 @@ public class EntListAdapter extends RecyclerView.Adapter<EntListAdapter.ItemView
 
         public void setItem(EntListDTO item){
             ent_name.setText(item.getEnt_name());
-            ent_time.setText(item.getEnt_open()+item.getEnt_close());
+            ent_time.setText(item.getOpen_time()+item.getClose_time());
             ent_distance.setText("거리");
             ent_location.setText(item.getEnt_id());
-
-            Glide.with(itemView).load(item.getEnt_proof()).into(ent_image);
+            Glide.with(itemView).load(item.getEnt_pic()).into(ent_image);
         }
     }
 

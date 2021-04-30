@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     tools:context=".user.UserReviewInsertActivity"
     android:orientation="vertical"
-    android:weightSum="4.5">
+    android:weightSum="4.5"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -27,20 +29,13 @@
             android:layout_weight="0.7"
             android:orientation="vertical"
             android:weightSum="2">
-            <EditText
-                android:id="@+id/reviewTitle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:text=""
-                android:gravity="center"
-                android:hint="게시글 제목"/>
+
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="별점위치 (버튼 5개 만들어서 값을 받으면 쉽게는 가능하긴 할듯 코드는 길어질듯)"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:text="별점위치 (버튼 5개 만들어서 값을 받으면 쉽게는 가능하긴 할듯 코드는 길어질듯)" />
 
 
         </LinearLayout>

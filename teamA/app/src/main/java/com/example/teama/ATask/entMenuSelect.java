@@ -113,8 +113,8 @@ public class entMenuSelect extends AsyncTask<Void, Void, Void> {
 
     public EntListDTO readMessage(JsonReader reader) throws IOException {
 
-        String ent_id = "", ent_menu = "", ent_menu_picture = "";
-
+        String ent_id = "", ent_menu = "", ent_menu_picture = "", ent_menu_detail = "";
+        int ent_menu_price = 0;
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
@@ -124,7 +124,11 @@ public class entMenuSelect extends AsyncTask<Void, Void, Void> {
                 ent_menu = reader.nextString();
             } else if (readStr.equals("ent_menu_picture")){
                 ent_menu_picture = reader.nextString();
-            }else{
+            } else if (readStr.equals("ent_menu_detail")) {
+                ent_menu_detail = reader.nextString();
+            }else if (readStr.equals("ent_menu_price")) {
+                ent_menu_price = reader.nextInt();
+            } else {
                 reader.skipValue();
             }
         }
@@ -133,6 +137,8 @@ public class entMenuSelect extends AsyncTask<Void, Void, Void> {
         dto.setEnt_id(ent_id);
         dto.setEnt_menu(ent_menu);
         dto.setEnt_menu_picture((ent_menu_picture));
+        dto.setEnt_menu_detail(ent_menu_detail);
+        dto.setEnt_menu_price(ent_menu_price);
         return dto;
 
     }

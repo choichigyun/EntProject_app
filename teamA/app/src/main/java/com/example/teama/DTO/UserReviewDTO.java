@@ -3,65 +3,50 @@ package com.example.teama.DTO;
 import java.io.Serializable;
 
 public class UserReviewDTO implements Serializable {
-    private String user_review;
-    private String user_reviewTitle;
-    private String user_review_photo;
-    private String user_nick;
-    private String ent_id;
+    private String review;
+    private String rvpicture_path;
+    private String users_nick;
+    private String ent_nick;
+    private int review_no;
 
-    public UserReviewDTO(String user_review, String user_nick, String ent_id) {
-        this.user_review = user_review;
-        this.user_nick = user_nick;
-        this.ent_id = ent_id;
+    public int getReview_no() {
+        return review_no;
     }
 
-    public String getEnt_id() {
-        return ent_id;
+    public void setReview_no(int review_no) {
+        this.review_no = review_no;
     }
 
-    public void setEnt_id(String ent_id) {
-        this.ent_id = ent_id;
+    public String getReview() {
+        return review;
     }
 
-    public UserReviewDTO(){};
-
-    public String getUser_review() {
-        return user_review;
+    public void setReview(String review) {
+        this.review = review;
     }
 
-    public void setUser_review(String user_review) {
-        this.user_review = user_review;
+    public String getRvpicture_path() {
+        return rvpicture_path;
     }
 
-    public String getUser_reviewTitle() {
-        return user_reviewTitle;
+    public void setRvpicture_path(String rvpicture_path) {
+        this.rvpicture_path = rvpicture_path;
     }
 
-    public void setUser_reviewTitle(String user_reviewTitle) {
-        this.user_reviewTitle = user_reviewTitle;
+    public String getUsers_nick() {
+        return users_nick;
     }
 
-    public String getUser_review_photo() {
-        return user_review_photo;
+    public void setUsers_nick(String users_nick) {
+        this.users_nick = users_nick;
     }
 
-    public void setUser_review_photo(String user_review_photo) {
-        this.user_review_photo = user_review_photo;
+    public String getEnt_nick() {
+        return ent_nick;
     }
 
-    public String getUser_nick() {
-        return user_nick;
-    }
-
-    public void setUser_nick(String user_nick) {
-        this.user_nick = user_nick;
-    }
-
-    public UserReviewDTO(String user_review, String user_reviewTitle, String user_review_photo, String user_nick) {
-        this.user_review = user_review;
-        this.user_reviewTitle = user_reviewTitle;
-        this.user_review_photo = user_review_photo;
-        this.user_nick = user_nick;
+    public void setEnt_nick(String ent_nick) {
+        this.ent_nick = ent_nick;
     }
 }
 

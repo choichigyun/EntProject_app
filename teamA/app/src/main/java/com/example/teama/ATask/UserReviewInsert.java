@@ -4,6 +4,9 @@ import android.net.http.AndroidHttpClient;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.teama.Adapter.EntListAdapter;
+import com.example.teama.Adapter.ReviewListAdapter;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -20,13 +23,14 @@ import static com.example.teama.Common.CommonMethod.ipConfig;
 
 public class UserReviewInsert extends AsyncTask<Void, Void, String> {
     private static final String TAG = "main:UserReviewInsert";
-    String user_reviewTitle, user_review, imageDbPathA,imageRealPathA;
-
-    public UserReviewInsert(String user_reviewTitle, String user_review, String imageDbPathA, String imageRealPathAw) {
-        this.user_reviewTitle = user_reviewTitle;
-        this.user_review = user_review;
+    String ent_nick, review, imageDbPathA,imageRealPathA;
+    ReviewListAdapter adapter;
+    public UserReviewInsert(String ent_nick, String review, String imageDbPathA, String imageRealPathAw, ReviewListAdapter adapter) {
+        this.ent_nick = ent_nick;
+        this.review = review;
         this.imageDbPathA = imageDbPathA;
         this.imageRealPathA = imageRealPathAw;
+        this.adapter = adapter;
     }
     @Override
     protected void onPreExecute() {
@@ -42,13 +46,11 @@ public class UserReviewInsert extends AsyncTask<Void, Void, String> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-            String users_nick = "aaa";
-            String ent_id = "bbb";
+            String users_nick = "홍홍홍";//유저 닉네임 값
             // 문자열 및 데이터 추가
-            builder.addTextBody("user_review", user_review, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("review", review, ContentType.create("Multipart/related", "UTF-8"));
             builder.addTextBody("users_nick", users_nick, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("ent_id", ent_id, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("user_reviewTitle", user_reviewTitle, ContentType.create("Multipart/related", "UTF-8"));
+            builder.addTextBody("ent_nick", ent_nick, ContentType.create("Multyipart/related", "UTF-8"));
             if(imageDbPathA != null)
                 builder.addTextBody("dbImgPath", imageDbPathA, ContentType.create("Multipart/related", "UTF-8"));
             if(imageRealPathA != null)

@@ -9,16 +9,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import com.example.teama.DTO.EntMenuDTO;
+
 import java.io.File;
 import java.io.IOException;
 
 public class CommonMethod {
     private static final String TAG = "main:CommonMethod";
-    public static String  ipConfig = "http://192.168.0.72:8080";
+    public static String  ipConfig = "http://192.168.0.21:8080";
     //public static String ipConfig = "http://121.148.239.200:80";  외부접속용 ip
 
     //어느곳에서나 접근 가능하게 한다. static
-
+    public static EntMenuDTO loginDTO = null;
     // 네트워크에 연결되어 있는가
     public static boolean isNetworkConnected(Context context) {
         ConnectivityManager cm = (ConnectivityManager)
@@ -36,7 +38,6 @@ public class CommonMethod {
             Log.d("isconnected : ", "False => 데이터 통신 불가!!!" );
             return false;
         }
-
     }
     // 이미지 로테이트 및 사이즈 변경
     public static Bitmap imageRotateAndResize(String path){ // state 1:insert, 2:update
@@ -53,13 +54,10 @@ public class CommonMethod {
             // 사진 바로 보이게 이미지 돌리기
             Bitmap bitmap = imgRotate(bitmapTmp, setImageOrientation(path));
 
-
             return bitmap;
-
         }
         return null;
     }
-
     // 사진 찍을때 돌린 각도 알아보기 : 가로로 찍는게 기본임
     public static int setImageOrientation(String path){
         ExifInterface exif = null;
@@ -116,7 +114,5 @@ public class CommonMethod {
             e.printStackTrace();
             return null;
         }
-
     }
-
 }

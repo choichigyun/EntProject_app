@@ -134,7 +134,7 @@ public class entSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public EntListDTO readMessage(JsonReader reader) throws IOException {
-        String ent_id="", ent_name = "", ent_location = "", ent_open = "", ent_close = "", ent_proof = "", ent_nick="";
+        String ent_id="", ent_name = "", ent_location = "", open_time = "", close_time = "", ent_proof = "", ent_nick="", ent_pic="", ent_tel= "",ent_category="";
 
         reader.beginObject();
         while (reader.hasNext()) {
@@ -145,24 +145,37 @@ public class entSelect extends AsyncTask<Void, Void, Void> {
                 ent_name = reader.nextString();
             } else if (readStr.equals("ent_location")) {
                 ent_location = reader.nextString();
-            } else if (readStr.equals("ent_open")) {
-                ent_open = reader.nextString();
-            } else if (readStr.equals("ent_close")) {
-                ent_close = reader.nextString();
+            } else if (readStr.equals("open_time")) {
+                open_time = reader.nextString();
+            } else if (readStr.equals("close_time")) {
+                close_time = reader.nextString();
             }else if (readStr.equals("ent_proof")) {
                 ent_proof = reader.nextString();
             }else if(readStr.equals("ent_nick")){
                 ent_nick = reader.nextString();
-            }else {
+            } else if (readStr.equals("ent_pic")) {
+                ent_pic = reader.nextString();
+            } else if (readStr.equals("ent_tel")) {
+                ent_tel = reader.nextString();
+            } else if (readStr.equals("ent_category")) {
+                ent_category = reader.nextString();
+            } else {
                 reader.skipValue();
             }
         }
         reader.endObject();
-        Log.d("listselect:myitem", ent_name + "," + ent_location + "," + ent_open + "," + ent_close);
-        //return new entListDTO(ent_name, ent_open, ent_close, ent_location);
-        EntListDTO dto = new EntListDTO(ent_name, ent_open, ent_close, ent_location, ent_proof);
+        Log.d("listselect:myitem", ent_name + "," + ent_location + "," + open_time + "," + close_time);
+        //return new entListDTO(ent_name, open_time, close_time, ent_location);
+        EntListDTO dto = new EntListDTO();
         dto.setEnt_id(ent_id);
+        dto.setEnt_name(ent_name);
+        dto.setEnt_location(ent_location);
+        dto.setOpen_time(open_time);
+        dto.setClose_time(close_time);
+        dto.setEnt_proof(ent_proof);
         dto.setEnt_nick(ent_nick);
+        dto.setEnt_pic(ent_pic);
+        dto.setEnt_tel(ent_tel);
         return dto;
     }
 

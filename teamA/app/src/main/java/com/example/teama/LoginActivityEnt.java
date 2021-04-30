@@ -1,10 +1,6 @@
 package com.example.teama;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-import com.example.teama.ent.EntDTO;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.teama.DTO.EntDTO;
 
 public class LoginActivityEnt extends Fragment {
-/*
+
     //loginDTO 받기
     public static EntDTO loginDTO = null;
     EditText logId, password;
@@ -37,7 +36,7 @@ public class LoginActivityEnt extends Fragment {
                 //회원가입 버튼
 
     }
-*/
+
 
     @Nullable
     @Override

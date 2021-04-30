@@ -1,8 +1,5 @@
 package com.example.teama.user;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,8 +16,13 @@ import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.teama.ATask.UserReviewInsert;
+import com.example.teama.Adapter.ReviewListAdapter;
 import com.example.teama.Common.CommonMethod;
+import com.example.teama.DTO.EntListDTO;
 import com.example.teama.R;
 
 import java.io.File;
@@ -31,6 +33,7 @@ import java.util.Date;
 
 import static com.example.teama.Common.CommonMethod.ipConfig;
 import static com.example.teama.Common.CommonMethod.isNetworkConnected;
+import static com.example.teama.user.ShopDetailActivity.activity;
 
 public class UserReviewInsertActivity extends AppCompatActivity {
     private static final String TAG = "main:ReviewWriting";
@@ -42,20 +45,27 @@ public class UserReviewInsertActivity extends AppCompatActivity {
     final int CAMERA_REQUEST = 1000;
     final int LOAD_IMAGE = 1001;
 
+    ReviewListAdapter adapter;
+
     File file = null;
     long fileSize = 0;
-    EditText user_reviewTitle, user_review;
+    EditText  user_review;
     ImageView imageView1;
     String state;
     String imgFilePath = null;
     SimpleDateFormat tmpDateFormat;
+    String ent_nick;
+    EntListDTO selItem;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_review_insert);
+
+        Intent intent = getIntent();
+        selItem = (EntListDTO) intent.getSerializableExtra("selItem");
+        ent_nick = intent.getStringExtra("ent_nick");
         tmpDateFormat = new SimpleDateFormat("yyyyMMdd_HHmmss");
         imageView1 = findViewById(R.id.imageView1);
-        user_reviewTitle = findViewById(R.id.reviewTitle);
         user_review = findViewById(R.id.review);
 
         Date tempDate = new Date();
@@ -89,7 +99,7 @@ public class UserReviewInsertActivity extends AppCompatActivity {
             //  Log.d(TAG, "createFile: " + e.getMessage());;
         }
 
-        imgFilePath = curFile.getAbsolutePath();
+                imgFilePath = curFile.getAbsolutePath();
         Log.d("main:paths", imgFilePath);
 
         return  curFile;
@@ -185,19 +195,20 @@ public class UserReviewInsertActivity extends AppCompatActivity {
         if(isNetworkConnected(this) == true){
             Log.d(TAG, "btnAddClicked: fileSize : " + fileSize);
             if(fileSize <= 30000000){  // 파일크기가 30메가 보다 작아야 업로드 할수 있음
-                reviewTitle = user_reviewTitle.getText().toString();
                 review = user_review.getText().toString();
 
-                UserReviewInsert userReviewInsert = new UserReviewInsert(reviewTitle, review, imageDbPathA,imageRealPathA);
+                UserReviewInsert userReviewInsert = new UserReviewInsert(ent_nick, review, imageDbPathA,imageRealPathA, adapter);
                 userReviewInsert.execute();
-
+                finish();
+                activity.finish();
                 Intent showIntent = new Intent(getApplicationContext(), ShopDetailActivity.class);
-                showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |   // 이 엑티비티 플래그를 사용하여 엑티비티를 호출하게 되면 새로운 태스크를 생성하여 그 태스크안에 엑티비티를 추가하게 됩니다. 단, 기존에 존재하는 태스크들중에 생성하려는 엑티비티와 동일한 affinity(관계, 유사)를 가지고 있는 태스크가 있다면 그곳으로 새 엑티비티가 들어가게됩니다.
+                showIntent.putExtra("selItem", selItem);
+                /*showIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK |   // 이 엑티비티 플래그를 사용하여 엑티비티를 호출하게 되면 새로운 태스크를 생성하여 그 태스크안에 엑티비티를 추가하게 됩니다. 단, 기존에 존재하는 태스크들중에 생성하려는 엑티비티와 동일한 affinity(관계, 유사)를 가지고 있는 태스크가 있다면 그곳으로 새 엑티비티가 들어가게됩니다.
                         Intent.FLAG_ACTIVITY_SINGLE_TOP | // 엑티비티를 호출할 경우 호출된 엑티비티가 현재 태스크의 최상단에 존재하고 있었다면 새로운 인스턴스를 생성하지 않습니다. 예를 들어 ABC가 엑티비티 스택에 존재하는 상태에서 C를 호출하였다면 여전히 ABC가 존재하게 됩니다.
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP); // 만약에 엑티비티스택에 호출하려는 엑티비티의 인스턴스가 이미 존재하고 있을 경우에 새로운 인스턴스를 생성하는 것 대신에 존재하고 있는 엑티비티를 포그라운드로 가져옵니다. 그리고 엑티비티스택의 최상단 엑티비티부터 포그라운드로 가져올 엑티비티까지의 모든 엑티비티를 삭제합니다.
+                        Intent.FLAG_ACTIVITY_CLEAR_TOP); // 만약에 엑티비티스택에 호출하려는 엑티비티의 인스턴스가 이미 존재하고 있을 경우에 새로운 인스턴스를 생성하는 것 대신에 존재하고 있는 엑티비티를 포그라운드로 가져옵니다. 그리고 엑티비티스택의 최상단 엑티비티부터 포그라운드로 가져올 엑티비티까지의 모든 엑티비티를 삭제합니다.*/
                 startActivity(showIntent);
 
-                finish();
+                Toast.makeText(this, "리뷰가 등록되었습니다.", Toast.LENGTH_SHORT).show();
             }else{
                 // 알림창 띄움
                 final AlertDialog.Builder builder = new AlertDialog.Builder(this);

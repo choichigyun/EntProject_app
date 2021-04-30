@@ -32,17 +32,21 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
     ArrayList<UserReviewDTO> userReviewList;
     ReviewListAdapter adapter;
     ProgressDialog progressDialog;
+    String ent_nick;
 
-    public UserReviewSelect(ArrayList<UserReviewDTO> userReviewList, ReviewListAdapter adapter, ProgressDialog progressDialog) {
+    public UserReviewSelect(ArrayList<UserReviewDTO> userReviewList, ReviewListAdapter adapter, ProgressDialog progressDialog, String ent_nick) {
         this.userReviewList = userReviewList;
         this.adapter = adapter;
         this.progressDialog = progressDialog;
+        this.ent_nick = ent_nick;
     }
 
     HttpClient httpClient;
     HttpPost httpPost;
     HttpResponse httpResponse;
     HttpEntity httpEntity;
+
+
 
     @Override
     protected void onPreExecute() {
@@ -60,10 +64,10 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
             MultipartEntityBuilder builder = MultipartEntityBuilder.create();
             builder.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
             builder.setCharset(Charset.forName("UTF-8"));
-            String user_nick = "aaa";
-            String ent_id = "bbb";
-            builder.addTextBody("user_nick", user_nick, ContentType.create("Multipart/related", "UTF-8"));
-            builder.addTextBody("ent_id", ent_id, ContentType.create("Multipart/related", "UTF-8"));
+            String user_nick = "홍홍홍";//현재로그인중인 회원 닉네임정보
+            builder.addTextBody("user_nick", user_nick, ContentType.create("Multipart/related", "UTF-8"));//현재로그인중인 회원 닉네임정보
+            if (!ent_nick.isEmpty())
+                builder.addTextBody("ent_nick", ent_nick, ContentType.create("Multipart/related", "UTF-8"));//현재 보는중인 가게 아이디정보
 
             // 전송
             InputStream inputStream = null;
@@ -133,22 +137,30 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
     }
 
     public UserReviewDTO readMessage(JsonReader reader) throws IOException {
-        String user_review = "", user_review_photo = "", user_nick = "", ent_id = "";
+        String user_review = "", rvpicture_path = "", user_nick = "", ent_nick = "";
 
         reader.beginObject();
         while (reader.hasNext()) {
             String readStr = reader.nextName();
             if (readStr.equals("users_nick")) {
                 user_nick = reader.nextString();
-            } else if (readStr.equals("ent_id")) {
-                ent_id = reader.nextString();
+            } else if (readStr.equals("ent_nick")) {
+                ent_nick = reader.nextString();
             } else if (readStr.equals("user_review")) {
                 user_review = reader.nextString();
+            } else if (readStr.equals("rvpicture_path")) {
+                rvpicture_path = reader.nextString();
+            }   else {
+                reader.skipValue();
             }
         }
         reader.endObject();
         UserReviewDTO dto = new UserReviewDTO();
-        return new UserReviewDTO(user_review, user_nick, ent_id);
+        dto.setUsers_nick(user_nick);
+        dto.setEnt_nick(ent_nick);
+        dto.setReview(user_review);
+        dto.setRvpicture_path(rvpicture_path);
+        return dto;
 
     }
 
@@ -183,3 +195,5 @@ public class UserReviewSelect extends AsyncTask<Void, Void, Void> {
     }*/
 
 }
+
+

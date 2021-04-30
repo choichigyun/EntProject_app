@@ -1,5 +1,6 @@
 package com.example.teama.Adapter;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,17 +12,18 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.teama.DTO.UserReviewDTO;
 import com.example.teama.R;
 
 import java.util.ArrayList;
 
-import static com.example.teama.user.ShopDetailActivity.userReviewDTO;
-
 public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.ItemViewHolder> {
     private static final String TAG = "main:ReviewListAdapter";
     ArrayList<UserReviewDTO> arrayList;
     Context context;
+    ImageView reviewImage;
+    Dialog dialog;
 
     public ReviewListAdapter(ArrayList<UserReviewDTO> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -33,6 +35,14 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.It
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View itemView = inflater.inflate(R.layout.reviewlist, parent, false);
+        reviewImage = itemView.findViewById(R.id.reviewImage);
+
+        reviewImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 
         return new ItemViewHolder(itemView);
     }
@@ -75,7 +85,7 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.It
         public TextView user_review;
         public TextView user_nick;
         public TextView user_star_score;
-        public ImageView user_picture;
+        public ImageView user_picture, reviewImage;
 
 
 
@@ -86,17 +96,21 @@ public class ReviewListAdapter extends RecyclerView.Adapter<ReviewListAdapter.It
             user_picture = itemView.findViewById(R.id.user_picture);
             user_nick = itemView.findViewById(R.id.user_nick);
             user_star_score = itemView.findViewById(R.id.user_star_score);
+            reviewImage = itemView.findViewById(R.id.reviewImage);
 
 
         }
 
         public void setItem(UserReviewDTO item){
 
-            user_nick.setText(item.getUser_nick());
-            user_review.setText(item.getUser_review());
+            user_nick.setText(item.getUsers_nick());
+            user_review.setText(item.getReview());
             user_picture.setImageResource(R.drawable.user);
+            Glide.with(itemView).load(item.getRvpicture_path()).into(reviewImage);
 
         }
     }
+
+
 
 }
